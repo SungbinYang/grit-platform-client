@@ -1,0 +1,222 @@
+language: ko-KR
+
+early_access: true
+enable_free_tier: true
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: "@coderabbitai 요약"
+  auto_title_placeholder: "@coderabbitai"
+  poem: true
+  review_status: true
+  collapse_walkthrough: false
+  sequence_diagrams: true
+  abort_on_close: true
+
+  path_filters:
+    - "!**/README.md"
+    - "!**/node_modules/**"
+    - "!**/dist/**"
+    - "!**/pnpm-lock.yaml"
+    - "!**/*.min.js"
+    - "!**/*.min.css"
+    - "!**/coverage/**"
+
+  path_instructions:
+    # TypeScript Common
+    - path: "**/*.ts"
+      instructions: |
+        - Verify TypeScript strict mode compliance
+        - Check for proper type definitions (avoid 'any')
+        - Review null/undefined handling
+        - Ensure consistent naming conventions
+
+    # React Components
+    - path: "**/*.tsx"
+      instructions: |
+        - Verify proper use of React hooks (dependency arrays, cleanup)
+        - Check for potential memory leaks in useEffect
+        - Review component prop types
+        - Avoid inline function definitions in JSX where performance matters
+        - Verify component naming follows PascalCase
+
+    # Components Directory
+    - path: "**/components/**/*.tsx"
+      instructions: |
+        - Check for proper separation of concerns
+        - Review accessibility (a11y) considerations
+        - Verify reusable components are properly abstracted
+        - Check for prop drilling issues
+
+    # Pages/Routes
+    - path: "**/pages/**/*.tsx"
+      instructions: |
+        - Verify proper data fetching patterns
+        - Check loading and error states handling
+        - Review SEO considerations if applicable
+
+    # Custom Hooks
+    - path: "**/hooks/**/*.ts"
+      instructions: |
+        - Verify custom hook naming starts with 'use'
+        - Check for proper memoization (useMemo, useCallback)
+        - Review return type consistency
+        - Ensure proper cleanup in useEffect
+
+    # API Layer
+    - path: "**/api/**/*.ts"
+      instructions: |
+        - Verify error handling patterns
+        - Check for proper typing of API responses
+        - Review loading/error state handling
+        - Check for proper use of TanStack Query if applicable
+
+    # State Management
+    - path: "**/store/**/*.ts"
+      instructions: |
+        - Verify state structure is normalized
+        - Check for unnecessary state duplication
+        - Review action/selector naming conventions
+
+    # Utilities
+    - path: "**/utils/**/*.ts"
+      instructions: |
+        - Verify functions are pure where possible
+        - Check for proper error handling
+        - Review type safety
+
+    # Types/Interfaces
+    - path: "**/types/**/*.ts"
+      instructions: |
+        - Verify type naming follows conventions (PascalCase)
+        - Check for proper use of interface vs type
+        - Review for unnecessary type assertions
+
+    # Configuration Files
+    - path: "**/vite.config.ts"
+      instructions: |
+        - Verify build configuration is optimized
+        - Check for proper plugin configuration
+        - Review environment variable handling
+
+    - path: "**/tsconfig*.json"
+      instructions: |
+        - Verify strict mode settings
+        - Check path aliases configuration
+        - Review compiler options appropriateness
+
+    - path: "**/package.json"
+      instructions: |
+        - Check for dependency version conflicts
+        - Review scripts configuration
+        - Verify peer dependencies are satisfied
+
+    - path: "**/.eslintrc*"
+      instructions: |
+        - Verify rules are appropriate for the project
+        - Check for conflicting rules
+
+    # Test Code
+    - path: "**/test/**/*.ts"
+      instructions: |
+        - Verify test coverage for edge cases
+        - Check test naming clarity
+        - Review appropriate use of mocks
+
+    - path: "**/test/**/*.tsx"
+      instructions: |
+        - Verify component rendering tests
+        - Check user interaction testing
+        - Review accessibility testing
+
+    - path: "**/*.test.ts"
+      instructions: |
+        - Verify Arrange-Act-Assert pattern compliance
+        - Check test isolation
+        - Review mock usage
+
+    - path: "**/*.test.tsx"
+      instructions: |
+        - Verify component testing best practices
+        - Check for proper cleanup after tests
+        - Review async testing patterns
+
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    ignore_title_keywords: [ ]
+    labels: [ ]
+    drafts: false
+    base_branches: [ ]
+
+  tools:
+    # Frontend Tools
+    biome:
+      enabled: true
+    eslint:
+      enabled: true
+
+    # Common Tools
+    shellcheck:
+      enabled: true
+    markdownlint:
+      enabled: true
+    yamllint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    hadolint:
+      enabled: true
+    actionlint:
+      enabled: true
+
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+
+    languagetool:
+      enabled: true
+      disabled_rules:
+        - EN_UNPAIRED_BRACKETS
+        - EN_UNPAIRED_QUOTES
+      disabled_categories:
+        - TYPOS
+        - TYPOGRAPHY
+        - CASING
+      enabled_only: false
+      level: default
+      enabled_rules: [ ]
+      enabled_categories: [ ]
+
+    ast-grep:
+      packages: [ ]
+      rule_dirs: [ ]
+      util_dirs: [ ]
+      essential_rules: true
+
+    # Disable Backend/Unused Tools
+    detekt:
+      enabled: false
+    swiftlint:
+      enabled: false
+    phpstan:
+      enabled: false
+    golangci-lint:
+      enabled: false
+    ruff:
+      enabled: false
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  jira:
+    project_keys: [ ]
+  linear:
+    team_keys: [ ]
