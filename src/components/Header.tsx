@@ -40,7 +40,7 @@ const Header: FC = () => {
         <button
           onClick={toggleMenu}
           className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 md:hidden"
-          aria-label="메뉴 열기"
+          aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
         >
           {isMenuOpen ? (
             <svg

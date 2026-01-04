@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { FC } from 'react';
 
 const Footer: FC = () => {
@@ -12,15 +13,24 @@ const Footer: FC = () => {
           </p>
 
           <div className="mt-4 flex space-x-6 md:mt-0">
-            <a href="#" className="text-sm text-gray-500 hover:text-gray-900">
+            <Link
+              to="/terms"
+              className="text-sm text-gray-500 hover:text-gray-900"
+            >
               이용약관
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-gray-900">
+            </Link>
+            <Link
+              to="/privacy"
+              className="text-sm text-gray-500 hover:text-gray-900"
+            >
               개인정보처리방침
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-gray-900">
+            </Link>
+            <Link
+              to="/contact"
+              className="text-sm text-gray-500 hover:text-gray-900"
+            >
               문의하기
-            </a>
+            </Link>
           </div>
         </div>
       </div>
