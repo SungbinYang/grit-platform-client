@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom';
+import { Footer, Header } from '../components';
 
 const RootLayout = () => {
   return (
-    <div className="min-h-screen bg-white">
-      {/* 추후 Header 추가 */}
-      <main>
+    <div className="flex min-h-screen flex-col bg-white">
+      <Header />
+      <main className="flex-1">
         <Outlet />
       </main>
-      {/* 추후 Footer 추가 */}
+      <Footer />
     </div>
   );
 };
